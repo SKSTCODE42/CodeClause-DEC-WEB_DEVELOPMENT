@@ -1,0 +1,38 @@
+html{
+    scroll-behavior: smooth; /*smooth scrolling */
+    background-color: #EFE1CE;
+    /* font by Google Font */
+    font-family: 'Comfortaa', cursive;
+    word-wrap: break-word;
+    margin: 0;
+    color: #373024;
+    text-align: center;
+    overflow-x: hidden;
+    }
+    body{
+        position: relative;
+    }
+    main{
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%,50%);
+        background-color: rgb(246, 241, 238);
+        box-shadow: 10px 10px 10px 10px #373024;
+        border-radius: 50px;
+    }
+    img{
+        max-width: 50%;
+        border: solid  2px #b4b1b1;
+        border-radius: 50in;
+    }
+    img:hover{
+        border: solid  2px blue;
+        box-shadow: 10px 10px 10px 10px #373024;
+    }
+    a{
+        color: #373024;
+    }
+    a:hover{
+        color: blue;
+    }
