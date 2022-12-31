@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<title>Donation Form</title>
+    <!-- Latest compiled and minified CSS --
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="theme-color" content="#008000" />
+    <link rel = "icon" href = "images/heart.png" type = "image/x-icon"> 
+</head>
+<body>
+<div class="container">
+    <br/><br/><br/><br/><br/><br/>
+    <div class="col-xs-6 col-xs-offset-3">
+        <div class="panel panel-default">
+            <div class="panel-heading" class="single_input wow fadeInUp" data-wow-duration="1s">
+            <h3 class="text-center">Donation Form</h3><br/><br/>
+            </div>
+            <div class="panel-body">
+            <form action="payment.php" method="post">
+                <div class="form-group" >
+                    <input type="text" class="form-control"  name="Name" size="20" maxlength="25" autocomplete="off" tabindex="1" placeholder="Your Name" required>
+                </div>
+                
+                <div class="form-group">
+                    <input type="Email" class="form-control"  name="Email" maxlength="100" autocomplete="off" tabindex="3" placeholder="Email" required >
+                </div>
+                <div class="form-group">
+                    <input type="tel" pattern="[0-9]{10}" class="form-control" name="phone" autocomplete="off" tabindex="5"  placeholder="Phone Number" required>
+                </div>
+               
+                <div class="form-group">
+                    <input type="number" class="form-control" name="Amount" autocomplete="off" tabindex="5"  placeholder="Amount" required>
+                </div>
+                <div class="form-group">
+                    <input type="submit" name="submit" value="Donate" class="btn btn-success btn-lg" style='width:100px;margin:0 50%;position:relative;left:-50px;'>
+                </div>
+            </form>
+             
+            </div>
+
+        </div>
+        <br/><br/><br/><br/><br/><br/>
+    </div>
+</div>
+</body>
+</html>

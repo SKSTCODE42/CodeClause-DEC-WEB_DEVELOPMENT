@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="icon"
+      href="https://img.icons8.com/external-kiranshastry-gradient-kiranshastry/50/000000/external-stopwatch-multimedia-kiranshastry-gradient-kiranshastry.png"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>StopWatch</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  width: 100%;
+  height: 100vh;
+}
+
+body {
+  background: linear-gradient(45deg, #0fa3f7, #00ffa3);
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: grid;
+  place-items: center;
+}
+
+main {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.stopWatch {
+  width: 400px;
+  height: 250px;
+  border-radius: 20px;
+  padding: 1rem;
+
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.48);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  font-family: 'roboto', sans-serif;
+}
+
+.lapsContainer {
+  width: 300px;
+  min-height: 250px;
+  max-height: 400px;
+  height: auto;
+  border-radius: 20px;
+  padding: 1rem;
+
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.48);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  overflow: auto;
+
+  display: flex;
+  flex-direction: column;
+
+  font-family: 'roboto', sans-serif;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.display {
+  display: flex;
+  font-size: 4rem;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+#msec {
+  font-size: 2rem;
+}
+
+.btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.btns button {
+  width: 100px;
+  padding: 1rem 0.5rem;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(#000000, #353535);
+  color: #ffffff;
+  font-family: 'roboto', sans-serif;
+  cursor: pointer;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.btns button:hover {
+  background: #505050;
+}
+
+.lapsContainer::-webkit-scrollbar {
+  width: 8px;
+}
+
+.lapsContainer::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.lapsContainer::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  border: 3px solid transparent;
+}
+
+@media screen and (max-width: 800px) {
+  main {
+    flex-direction: column;
+  }
+
+  .lapsContainer {
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .stopWatch {
+    width: 90%;
+  }
+
+  .lapsContainer {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .display {
+    font-size: 3rem;
+    margin: 0;
+  }
+
+  .stopWatch {
+    width: 90%;
+    height: auto;
+    gap: 2rem;
+    justify-content: space-between;
+  }
+
+  .lapsContainer {
+    width: 90%;
+    max-height: 250px;
+  }
+
+  .btns {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .btns button {
+    width: 70%;
+  }
+}
+</style>
+  </head>
+  <body>
+<h1>STOPWATCH</h1>
+    <main>
+      <div class="stopWatch">
+        <div class="display">
+          <p class="timerDisplay" id="min">00</p>
+          :
+          <p class="timerDisplay" id="sec">00</p>
+
+          <p class="timerDisplay" id="msec">00</p>
+        </div>
+
+        <div class="btns">
+          <button id="startBtn" onclick="startStop()">start</button>
+          <button id="resetBtn" onclick="reset()">reset</button>
+          <button id="lapBtn" onclick="lap()">lap</button>
+        </div>
+      </div>
+      <div id="laps" class="lapsContainer"></div>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+<script>
+let minutes = 0
+let seconds = 0
+let milliseconds = 0
+
+let displayMinutes = milliseconds
+let displaySeconds = seconds
+let displayMilliseconds = milliseconds
+
+let interval = ''
+let lapNow = ''
+
+let stopWatchStatus = 'stopped'
+
+let startBtn = document.getElementById('startBtn')
+let timerMinutes = document.getElementById('min')
+let timerSeconds = document.getElementById('sec')
+let timerMilliseconds = document.getElementById('msec')
+let lapContainer = document.getElementById('laps')
+
+function startWatch() {
+  milliseconds++
+
+  if (milliseconds / 100 == 1) {
+    seconds++
+    milliseconds = 0
+    if (seconds / 60 == 1) {
+      minutes++
+      seconds = 0
+    }
+  }
+
+  if (milliseconds < 10) {
+    displayMilliseconds = '0' + milliseconds
+  } else {
+    displayMilliseconds = milliseconds
+  }
+
+  if (seconds < 10) {
+    displaySeconds = '0' + seconds
+  } else {
+    displaySeconds = seconds
+  }
+
+  if (minutes < 10) {
+    displayMinutes = '0' + minutes
+  } else {
+    displayMinutes = minutes
+  }
+
+  timerMilliseconds.innerHTML = displayMilliseconds
+  timerSeconds.innerHTML = displaySeconds
+  timerMinutes.innerHTML = displayMinutes
+}
+
+function startStop() {
+  if (stopWatchStatus === 'stopped') {
+    interval = setInterval(() => {
+      startWatch()
+    }, 10)
+    stopWatchStatus = 'running'
+    startBtn.innerHTML = 'stop'
+  } else {
+    clearInterval(interval)
+    stopWatchStatus = 'stopped'
+    startBtn.innerHTML = 'start'
+  }
+}
+
+function reset() {
+  clearInterval(interval)
+  minutes = 0
+  seconds = 0
+  milliseconds = 0
+  displayMinutes = 0
+  displaySeconds = 0
+  displayMilliseconds = 0
+  stopWatchStatus = 'stopped'
+  timerMilliseconds.innerHTML = '00'
+  timerSeconds.innerHTML = '00'
+  timerMinutes.innerHTML = '00'
+  laps.innerHTML = ''
+  startBtn.innerHTML = 'start'
+}
+
+function lap() {
+  lapNow = `${displayMinutes}:${displaySeconds}:${displayMilliseconds}`
+
+  lapSpan = document.createElement('span')
+  lapSpan.innerHTML = lapNow
+
+  lapContainer.appendChild(lapSpan)
+}
+</script>
+</html>
