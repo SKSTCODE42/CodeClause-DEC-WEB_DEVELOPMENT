@@ -14,7 +14,6 @@ function initialize(){
         );
         
         code.close();
-
     }
 }
 initialize();
