@@ -22,7 +22,6 @@ function change() {
         document.getElementById("myStyleSheet").href = 'darkmode.css';
     }
 }
-
 var Area = [
     "Square Kilometer (km²)",
     "Hectare (ha)",
