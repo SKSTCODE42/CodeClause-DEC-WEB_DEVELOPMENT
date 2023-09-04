@@ -7,12 +7,10 @@ function initialize(){
         code.open();
         code.writeln(
             html.value +
-
             "<style>"+ css.value +"</style>" +
 
             "<script>"+ js.value +"</script>"
         );
-        
         code.close();
     }
 }
