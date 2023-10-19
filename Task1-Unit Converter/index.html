@@ -519,7 +519,6 @@ function calculate() {
         result = parseFloat(result) + TemperatureIncrement[document.getElementById("fromSelect").selectedIndex - 1];
     }
 
-
     result = result * FactorsArr[document.getElementById("categories").selectedIndex - 1][document.getElementById("toSelect").selectedIndex - 1];
 
     result = result / FactorsArr[document.getElementById("categories").selectedIndex - 1][document.getElementById("fromSelect").selectedIndex - 1];
