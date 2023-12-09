@@ -92,7 +92,6 @@ var MassFactor = [
     2204.62262,
     35273.9619
 ];
-
 var Speed = [
     "Mach (Mach)",
     "Meter Per Second (m/s)",
